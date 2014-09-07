@@ -10,6 +10,8 @@
 #import "GLFlixsterAPIClient.h"
 #import "GLMovieCell.h"
 #import "GLMovie.h"
+#import <MBProgressHUD.h>
+
 @interface GLMovieTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic,assign)NSInteger pageSize;
 @property (nonatomic,assign)NSInteger total;
@@ -30,7 +32,7 @@
     [self.view addSubview:self.tableView];
     
     self.movies=@[];
-    self.pageSize=10;
+    self.pageSize=20;
     self.page=1;
     self.total=NSNotFound;
     [self fetchNextMoviePage:nil];
@@ -51,7 +53,10 @@
         }
     }
     
+    /* show loading */
     self.isLoadingPage=YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [[GLFlixsterAPIClient sharedFlixsterClient] fetchMoviesWithPageSize:self.pageSize page:self.page success:^(NSInteger total, NSArray *movies) {
         NSLog(@"page %@ of %@",@(self.page),@(pages));
         
@@ -66,6 +71,7 @@
         
         /* update ui */
         self.isLoadingPage=NO;
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.tableView reloadData];
     } fail:^{
         //show message
@@ -108,8 +114,6 @@
 #pragma mark - scrollview delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height)) {
-        
-        NSLog(@" scroll to bottom!");
         if(self.isLoadingPage == NO){ // no need to worry about threads because this is always on main thread.
             [self fetchNextMoviePage:nil];
         }
