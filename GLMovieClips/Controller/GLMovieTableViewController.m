@@ -8,11 +8,15 @@
 
 #import "GLMovieTableViewController.h"
 #import "GLFlixsterAPIClient.h"
+#import "GLMovieCell.h"
+#import "GLMovie.h"
 @interface GLMovieTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic,assign)NSInteger pageSize;
 @property (nonatomic,assign)NSInteger total;
 @property (nonatomic,assign)NSInteger page;
+@property (nonatomic,assign)BOOL isLoadingPage;
 @property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)NSArray *movies;
 @end
 @implementation GLMovieTableViewController
 
@@ -23,6 +27,9 @@
     UIBarButtonItem *nextButton=[[UIBarButtonItem alloc]initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(fetchNextMoviePage:)];
     self.navigationItem.rightBarButtonItem=nextButton;
     
+    [self.view addSubview:self.tableView];
+    
+    self.movies=@[];
     self.pageSize=10;
     self.page=1;
     self.total=NSNotFound;
@@ -43,14 +50,70 @@
             return;
         }
     }
+    
+    self.isLoadingPage=YES;
     [[GLFlixsterAPIClient sharedFlixsterClient] fetchMoviesWithPageSize:self.pageSize page:self.page success:^(NSInteger total, NSArray *movies) {
         NSLog(@"page %@ of %@",@(self.page),@(pages));
-        /* update and increment page */
+        
+        /* update and increment page counts */
         self.total=total;
         self.page++;
+        
+        /* add to current movies */
+        NSMutableArray *mutableArray=[self.movies mutableCopy];
+        [mutableArray addObjectsFromArray:movies];
+        self.movies=mutableArray;
+        
+        /* update ui */
+        self.isLoadingPage=NO;
+        [self.tableView reloadData];
     } fail:^{
         //show message
+        self.isLoadingPage=NO;
     }];
+
+}
+
+#pragma mark -
+#pragma mark - tableview datasource
+-(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (!self.movies) {
+        return 0;
+    }
+    return self.movies.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier=@"identifier";
+    GLMovieCell *cell=(GLMovieCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[GLMovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    GLMovie *movie=self.movies[indexPath.row];
+    cell.textLabel.text=movie.title;
+    return cell;
+}
+
+#pragma mark -
+#pragma mark - tableview delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark -
+#pragma mark - scrollview delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(self.tableView.contentOffset.y >= (self.tableView.contentSize.height - self.tableView.bounds.size.height)) {
+        
+        NSLog(@" scroll to bottom!");
+        if(self.isLoadingPage == NO){ // no need to worry about threads because this is always on main thread.
+            [self fetchNextMoviePage:nil];
+        }
+    }
 
 }
 
@@ -58,6 +121,14 @@
 #pragma mark -
 #pragma mark - getters
 -(UITableView *)tableView{
-    return nil;
+    if (_tableView) {
+        return _tableView;
+    }
+    _tableView=[[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.delegate=self;
+    _tableView.dataSource=self;
+    return _tableView;
 }
+
+
 @end

@@ -24,6 +24,7 @@
 		C133154019BBC06700B40F3A /* GLMovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C133153F19BBC06700B40F3A /* GLMovieDetailsViewController.m */; };
 		C133154519BBC25300B40F3A /* GLFlixsterAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C133154419BBC25300B40F3A /* GLFlixsterAPIClient.m */; };
 		C133154819BC054800B40F3A /* GLMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = C133154719BC054800B40F3A /* GLMovie.m */; };
+		C133154B19BC1AB300B40F3A /* GLMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C133154A19BC1AB300B40F3A /* GLMovieCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		C133154419BBC25300B40F3A /* GLFlixsterAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLFlixsterAPIClient.m; sourceTree = "<group>"; };
 		C133154619BC054800B40F3A /* GLMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMovie.h; sourceTree = "<group>"; };
 		C133154719BC054800B40F3A /* GLMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMovie.m; sourceTree = "<group>"; };
+		C133154919BC1AB300B40F3A /* GLMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMovieCell.h; sourceTree = "<group>"; };
+		C133154A19BC1AB300B40F3A /* GLMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMovieCell.m; sourceTree = "<group>"; };
 		F090A28A9175453194DDEBA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -202,6 +205,8 @@
 		C133153A19BBBFAE00B40F3A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C133154919BC1AB300B40F3A /* GLMovieCell.h */,
+				C133154A19BC1AB300B40F3A /* GLMovieCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C133151419BBBDC500B40F3A /* main.m in Sources */,
+				C133154B19BC1AB300B40F3A /* GLMovieCell.m in Sources */,
 				C133154519BBC25300B40F3A /* GLFlixsterAPIClient.m in Sources */,
 				C133154019BBC06700B40F3A /* GLMovieDetailsViewController.m in Sources */,
 				C133154819BC054800B40F3A /* GLMovie.m in Sources */,
