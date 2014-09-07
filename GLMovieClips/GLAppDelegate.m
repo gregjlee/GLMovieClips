@@ -7,14 +7,15 @@
 //
 
 #import "GLAppDelegate.h"
-
+#import "GLMovieTableViewController.h"
 @implementation GLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    GLMovieTableViewController *movieTableViewController=[[GLMovieTableViewController alloc] init];
+    self.window.rootViewController=[[UINavigationController alloc]initWithRootViewController:movieTableViewController];
     [self.window makeKeyAndVisible];
     return YES;
 }
