@@ -24,6 +24,9 @@ PODS:
   - Mantle/extobjc (1.5)
   - MBProgressHUD (0.9)
   - PureLayout (1.0.1)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
   - TSMessages (0.9.10):
     - HexColors
 
@@ -32,6 +35,7 @@ DEPENDENCIES:
   - Mantle (~> 1.5)
   - MBProgressHUD (~> 0.9)
   - PureLayout (~> 1.0.1)
+  - SDWebImage (~> 3.6)
   - TSMessages (~> 0.9.6)
 
 SPEC CHECKSUMS:
@@ -40,6 +44,7 @@ SPEC CHECKSUMS:
   Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   PureLayout: 972964b21dbcbc5cc36785aed16aba03176f057d
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   TSMessages: 8598a0645e9d54847f6e5f3b070bef39c493bbf8
 
 COCOAPODS: 0.33.1

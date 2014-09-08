@@ -99,8 +99,9 @@
     if (!cell) {
         cell = [[GLMovieCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
     GLMovie *movie=self.movies[indexPath.row];
-    cell.textLabel.text=movie.title;
+    [cell configureWithMovie:movie];
     return cell;
 }
 

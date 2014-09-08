@@ -8,6 +8,7 @@
 
 #import "GLMovie.h"
 #import <NSValueTransformer+MTLPredefinedTransformerAdditions.h>
+#import <MTLValueTransformer.h>
 @implementation GLMovie
 /*
  response
@@ -56,9 +57,76 @@
 +(NSDictionary *)JSONKeyPathsByPropertyKey{
     return @{@"objectID": @"id",
              @"mpaaRating": @"mpaa_rating",
-             @"criticsConsensus": @"critics_consensus"};
+             @"criticsConsensus": @"critics_consensus",
+             @"imageURL": @"posters",
+             @"criticsRating": @"ratings",
+             @"criticsScore": @"ratings",
+             @"audienceRating": @"ratings",
+             @"audienceScore": @"ratings",
+             @"abridgedCast": @"abridged_cast"};
 }
 
+
+#pragma mark - 
+#pragma mark - transformers
++ (NSValueTransformer *)imageURLJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *posters) {
+        return posters[@"detailed"];
+    }];
+}
+
++ (NSValueTransformer *)criticsRatingJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *ratings) {
+        return ratings[@"critics_rating"];
+    }];
+}
+
++ (NSValueTransformer *)criticsScoreJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *ratings) {
+        return ratings[@"critics_score"];
+    }];
+}
+
++ (NSValueTransformer *)audienceRatingJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *ratings) {
+        return ratings[@"audience_rating"];
+    }];
+}
+
++ (NSValueTransformer *)audienceScoreJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *ratings) {
+        return ratings[@"audience_score"];
+    }];
+}
+
++ (NSValueTransformer *)abridgedCastJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSArray *castObjects) {
+        NSMutableString *castString=[NSMutableString string];
+        for (NSDictionary *castObject in castObjects) {
+            [castString appendString:castObject[@"name"]];
+            
+            /*check if last */
+            if (![castObject isEqual:castObjects.lastObject]) {
+                [castString appendString:@" ,"];
+            }
+        }
+        return castString;
+    }];
+}
+
+/*
++ (NSValueTransformer *)locationCoordinateJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSDictionary *coordinateDict) {
+        CLLocationDegrees latitude = [coordinateDict[@"lat"] doubleValue];
+        CLLocationDegrees longitude = [coordinateDict[@"lon"] doubleValue];
+        return [NSValue valueWithMKCoordinate:CLLocationCoordinate2DMake(latitude, longitude)];
+    } reverseBlock:^(NSValue *coordinateValue) {
+        CLLocationCoordinate2D coordinate = [coordinateValue MKCoordinateValue];
+        return @{@"lat": @(coordinate.latitude), @"lon": @(coordinate.longitude)};
+    }];
+}
+ 
+ */
 
 #pragma mark - 
 #pragma mark - process JSON

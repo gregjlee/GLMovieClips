@@ -5,6 +5,7 @@ pod 'TSMessages' , '~> 0.9.6'
 pod 'Mantle', '~> 1.5'
 pod 'MBProgressHUD', '~> 0.9'
 pod 'PureLayout', '~> 1.0.1'
+pod 'SDWebImage', '~> 3.6'
 
 
 
