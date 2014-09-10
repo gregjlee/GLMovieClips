@@ -12,19 +12,22 @@
 @interface GLMovie : MTLModel <MTLJSONSerializing>
 @property (nonatomic,strong)NSNumber *objectID;
 @property (nonatomic,strong)NSString *title;
-@property (nonatomic,strong)NSString *year;
+@property (nonatomic,strong)NSNumber *year;
 @property (nonatomic,strong)NSString *mpaaRating;
-@property (nonatomic,strong)NSString *criticsConsensus;
-@property (nonatomic,strong)NSString *runtime;
+@property (nonatomic,strong)NSNumber *runtime;
+@property (nonatomic,strong)NSString *synopsis;
+
+/*cast */
 @property (nonatomic,strong)NSString *abridgedCast;
 /*ratings */
 @property (nonatomic,strong)NSString *criticsRating;
-@property (nonatomic,strong)NSString *criticsScore;
+@property (nonatomic,strong)NSNumber *criticsScore;
 @property (nonatomic,strong)NSString *audienceRating;
-@property (nonatomic,strong)NSString *audienceScore;
+@property (nonatomic,strong)NSNumber *audienceScore;
 
-@property (nonatomic,strong)NSString *synopsis;
-@property (nonatomic,strong)NSString *imageURL;
+/* posters */
+@property (nonatomic,strong)NSString *detailedImageURL;
+@property (nonatomic,strong)NSString *originalImageURL;
 
 + (NSArray *)deserializeMoviesFromJSON:(NSArray *)moviesJSON;
 

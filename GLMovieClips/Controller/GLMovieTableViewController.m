@@ -11,6 +11,7 @@
 #import "GLMovieCell.h"
 #import "GLMovie.h"
 #import <MBProgressHUD.h>
+#import "GLMovieDetailsViewController.h"
 
 @interface GLMovieTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic,assign)NSInteger pageSize;
@@ -26,6 +27,8 @@
 #pragma mark - view life cycle
 -(void)viewDidLoad{
     [super viewDidLoad];
+    self.navigationController.navigationBar.backgroundColor=[UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     UIBarButtonItem *nextButton=[[UIBarButtonItem alloc]initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:self action:@selector(fetchNextMoviePage:)];
     self.navigationItem.rightBarButtonItem=nextButton;
     
@@ -82,7 +85,7 @@
 
 #pragma mark -
 #pragma mark - tableview datasource
--(NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
@@ -91,6 +94,10 @@
         return 0;
     }
     return self.movies.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90.f;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -109,6 +116,9 @@
 #pragma mark - tableview delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GLMovie *movie=self.movies[indexPath.row];
+    GLMovieDetailsViewController *detailController=[[GLMovieDetailsViewController alloc]initWithMovie:movie];
+    [self.navigationController pushViewController:detailController animated:YES];
 }
 
 #pragma mark -

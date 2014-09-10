@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		80655988D1FF4C5D81B4FDF8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F090A28A9175453194DDEBA6 /* libPods.a */; };
+		C1078A5119BE959F00DF11E3 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1078A5019BE959F00DF11E3 /* Storyboard.storyboard */; };
+		C1078A5419C0539E00DF11E3 /* GLMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C1078A5319C0539E00DF11E3 /* GLMovieDetailsCell.m */; };
 		C133150819BBBDC500B40F3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C133150719BBBDC500B40F3A /* Foundation.framework */; };
 		C133150A19BBBDC500B40F3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C133150919BBBDC500B40F3A /* CoreGraphics.framework */; };
 		C133150C19BBBDC500B40F3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C133150B19BBBDC500B40F3A /* UIKit.framework */; };
@@ -39,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		890DE6706D594B0785610781 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C1078A5019BE959F00DF11E3 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		C1078A5219C0539E00DF11E3 /* GLMovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMovieDetailsCell.h; sourceTree = "<group>"; };
+		C1078A5319C0539E00DF11E3 /* GLMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMovieDetailsCell.m; sourceTree = "<group>"; };
 		C133150419BBBDC500B40F3A /* GLMovieClips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLMovieClips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C133150719BBBDC500B40F3A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C133150919BBBDC500B40F3A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -207,6 +212,9 @@
 			children = (
 				C133154919BC1AB300B40F3A /* GLMovieCell.h */,
 				C133154A19BC1AB300B40F3A /* GLMovieCell.m */,
+				C1078A5019BE959F00DF11E3 /* Storyboard.storyboard */,
+				C1078A5219C0539E00DF11E3 /* GLMovieDetailsCell.h */,
+				C1078A5319C0539E00DF11E3 /* GLMovieDetailsCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 			files = (
 				C133151219BBBDC500B40F3A /* InfoPlist.strings in Resources */,
 				C133151A19BBBDC500B40F3A /* Images.xcassets in Resources */,
+				C1078A5119BE959F00DF11E3 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1078A5419C0539E00DF11E3 /* GLMovieDetailsCell.m in Sources */,
 				C133151419BBBDC500B40F3A /* main.m in Sources */,
 				C133154B19BC1AB300B40F3A /* GLMovieCell.m in Sources */,
 				C133154519BBC25300B40F3A /* GLFlixsterAPIClient.m in Sources */,

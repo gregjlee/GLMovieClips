@@ -29,13 +29,13 @@
  11
  "ratings": {
  12
- "critics_rating": "Certified Fresh",
+    "critics_rating": "Certified Fresh",
  13
- "critics_score": 97,
+    "critics_score": 97,
  14
- "audience_rating": "Upright",
+    "audience_rating": "Upright",
  15
- "audience_score": 93
+    "audience_score": 93
  16
  },
  17
@@ -43,13 +43,13 @@
  18
  "posters": {
  19
- "thumbnail": "http://content8.flixster.com/movie/11/15/86/11158674_mob.jpg",
+    "thumbnail": "http://content8.flixster.com/movie/11/15/86/11158674_mob.jpg",
  20
- "profile": "http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg",
+    "profile": "http://content8.flixster.com/movie/11/15/86/11158674_pro.jpg",
  21
- "detailed": "http://content8.flixster.com/movie/11/15/86/11158674_det.jpg",
+    "detailed": "http://content8.flixster.com/movie/11/15/86/11158674_det.jpg",
  22
- "original": "http://content8.flixster.com/movie/11/15/86/11158674_ori.jpg"
+    "original": "http://content8.flixster.com/movie/11/15/86/11158674_ori.jpg"
  23
  },
 
@@ -57,21 +57,28 @@
 +(NSDictionary *)JSONKeyPathsByPropertyKey{
     return @{@"objectID": @"id",
              @"mpaaRating": @"mpaa_rating",
-             @"criticsConsensus": @"critics_consensus",
-             @"imageURL": @"posters",
+             @"detailedImageURL": @"posters",
+             @"originalImageURL": @"posters",
              @"criticsRating": @"ratings",
              @"criticsScore": @"ratings",
              @"audienceRating": @"ratings",
              @"audienceScore": @"ratings",
-             @"abridgedCast": @"abridged_cast"};
+             @"abridgedCast": @"abridged_cast"
+             };
 }
 
 
 #pragma mark - 
 #pragma mark - transformers
-+ (NSValueTransformer *)imageURLJSONTransformer {
++ (NSValueTransformer *)detailedImageURLJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *posters) {
         return posters[@"detailed"];
+    }];
+}
+
++ (NSValueTransformer *)originalImageURLJSONTransformer {
+    return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *posters) {
+        return posters[@"original"];
     }];
 }
 

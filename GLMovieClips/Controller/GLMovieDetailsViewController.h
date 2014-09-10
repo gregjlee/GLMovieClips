@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class GLMovie;
 @interface GLMovieDetailsViewController : UIViewController
+-(id)initWithMovie:(GLMovie *)movie;
 
 @end
