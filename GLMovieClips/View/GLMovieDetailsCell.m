@@ -39,6 +39,7 @@
 @implementation GLMovieDetailsImageCell
 -(void)loadSubviews{
     self.posterImageView=[[UIImageView alloc]initForAutoLayout];
+    self.posterImageView.contentMode=UIViewContentModeCenter;
     [self.contentView addSubview:self.posterImageView];
 }
 
@@ -48,6 +49,6 @@
 
 -(void)configureWithMovie:(GLMovie *)movie{
     
-    [self.posterImageView setImageWithURL:[NSURL URLWithString:movie.originalImageURL] placeholderImage:nil];
+    [self.posterImageView setImageWithURL:[NSURL URLWithString:movie.detailedImageURL] placeholderImage:nil];
 }
 @end

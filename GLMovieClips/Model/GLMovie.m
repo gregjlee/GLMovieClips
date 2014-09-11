@@ -58,7 +58,7 @@
     return @{@"objectID": @"id",
              @"mpaaRating": @"mpaa_rating",
              @"detailedImageURL": @"posters",
-             @"originalImageURL": @"posters",
+             @"thumbnailImageURL": @"posters",
              @"criticsRating": @"ratings",
              @"criticsScore": @"ratings",
              @"audienceRating": @"ratings",
@@ -72,13 +72,16 @@
 #pragma mark - transformers
 + (NSValueTransformer *)detailedImageURLJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *posters) {
-        return posters[@"detailed"];
+        NSString *thmbString=posters[@"detailed"];
+        NSArray *thmbComponents=[thmbString componentsSeparatedByString:@"_"];
+        NSString *detail=[NSString stringWithFormat:@"%@_det.jpg",thmbComponents.firstObject];
+        return detail;
     }];
 }
 
-+ (NSValueTransformer *)originalImageURLJSONTransformer {
++ (NSValueTransformer *)thumbnailImageURLJSONTransformer {
     return [MTLValueTransformer transformerWithBlock:^id(NSDictionary *posters) {
-        return posters[@"original"];
+        return posters[@"thumbnail"];
     }];
 }
 

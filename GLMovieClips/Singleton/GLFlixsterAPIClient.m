@@ -65,7 +65,7 @@ static NSString * const kFlixsterBaseURL = @"http://api.rottentomatoes.com/api/p
         NSDictionary *response=responseObject;
         NSInteger total=[response[@"total"] integerValue];
         NSArray *movieJSON=response[@"movies"];
-//        NSLog(@"json %@",movieJSON);
+        NSLog(@"json %@",movieJSON);
         NSArray *movies= [GLMovie deserializeMoviesFromJSON:movieJSON];
         if (success) {
             success(total,movies);

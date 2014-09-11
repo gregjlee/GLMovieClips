@@ -27,7 +27,7 @@
 
 /* posters */
 @property (nonatomic,strong)NSString *detailedImageURL;
-@property (nonatomic,strong)NSString *originalImageURL;
+@property (nonatomic,strong)NSString *thumbnailImageURL;
 
 + (NSArray *)deserializeMoviesFromJSON:(NSArray *)moviesJSON;
 

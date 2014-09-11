@@ -85,7 +85,7 @@
 
 #pragma mark - public config
 -(void)configureWithMovie:(GLMovie *)movie{
-    [self.iconImageView setImageWithURL:[NSURL URLWithString:movie.detailedImageURL] placeholderImage:nil];
+    [self.iconImageView setImageWithURL:[NSURL URLWithString:movie.thumbnailImageURL] placeholderImage:nil];
     self.titleLabel.text= movie.title;
     self.ratingLabel.text =movie.criticsScore.stringValue;// movie.criticsRating;
     self.descriptionLabel.text=movie.criticsRating;
